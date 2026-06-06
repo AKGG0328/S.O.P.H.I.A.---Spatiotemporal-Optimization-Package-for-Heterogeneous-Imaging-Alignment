@@ -5,14 +5,10 @@ Roadmap
 - [x] Data ingestion
 - [x] Pull BIDS dataset
 - [ ] M/EEG prototyping 
-	- [x] apply bandpass filter
-	- [x] epoch slice
-	- [x] evoke visulaization
 	- [ ] def transitioning
-- [ ] fMRI spatial Pipeline
-	- [ ] Nilearn prototype
-	- [ ] extract 3D BOLD data
-	- [ ] spatial network mapping
+- [ ] fMRI spatial prototyping
+	- [ ] def transitioning
+	- [ ] intergrate for **fmriprep preproceesed data** reading
 - [ ] Source Localiztion
 	- [ ]
 - [ ] SVM
@@ -43,3 +39,11 @@ Roadmap
 - ingest 4D spatial data
 - Not much was achieved today :(
 - set to GLM
+
+### 2026/06/06 18:15
+- GLM works
+- *look into fmriprep and datapreprocessing*
+
+### 2026/06/07 01:29
+- transioning fmri pipeline to fmriprep standard
+
