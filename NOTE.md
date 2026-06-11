@@ -4,17 +4,14 @@ Project Sophia Dev Log
 Roadmap 
 - [x] Data ingestion
 - [x] Pull BIDS dataset
-- [ ] M/EEG prototyping 
-	- [ ] def transitioning
-- [ ] fMRI spatial prototyping
-	- [ ] def transitioning
-	- [x] intergrate for **fmriprep preproceesed data** reading
-- [ ] Source Localiztion
-	- [ ] fake head 
-	- [ ]
-- [ ] SVM
+- [x] M/EEG prototypying
+- [x] fMRI spatial prototyping	
+- [x] intergrate for **fmriprep preproceesed data** reading
+- [x] Source Localization
+- [ ] SVM skip for now 
 	- [x] Feature extraction: time-frequency domain
 	- [ ] ML process 
+- [ ] fMRI counterpart matrix
 - [ ] RSA
 
 
@@ -59,3 +56,14 @@ Roadmap
 - meeg source localization
 	- anatomy 3D model build
 	-- struggling right now :（
+
+###  2026/06/11 19:40
+- figuring out fake head 
+- HEAD (fsaverage bypass source localization)
+- enter machine learning phase 
+- minor problem in event alignment
+- shift fmri work to derivate preprocessed data
+- meeg video labeling
+- add epoch label confirm to sanity check
+- mod 03 with label
+

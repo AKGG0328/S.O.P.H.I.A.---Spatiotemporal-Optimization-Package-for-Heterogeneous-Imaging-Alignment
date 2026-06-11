@@ -59,6 +59,8 @@ stc = apply_inverse(evoked, inverse_operator, lambda2=1.0 / 9.0, method='dSPM')
 print(f"\nSource Localization Complete.")
 print(f"The 2D sensors have been mapped to {stc.data.shape[0]} 3D cortical locations!")
 
+#mne.viz.set_3d_options(depth_peeling=False, antialias=False)
+
 # 6. Plot the 3D Brain Activity
 print("\nRendering 3D Cortex. Focus on the visual/motor peak at 0.150 seconds.")
 brain = stc.plot(
@@ -69,3 +71,6 @@ brain = stc.plot(
     initial_time=0.150, 
     time_viewer=True
 )
+
+# Pause the script so the 3D window stays open
+input("Press Enter in this terminal to close the 3D window and end the script...") 

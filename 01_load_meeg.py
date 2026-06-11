@@ -3,13 +3,18 @@ import mne
 from mne_bids import BIDSPath, read_raw_bids
 import matplotlib.pyplot as plt
 from mne.preprocessing import ICA
+import pandas as pd
+import numpy as np
 
 # Point to your MEEG dataset
 BIDS_ROOT = '/home/idhuang/bhs2026/project_sophia/data/ds007353/'
+TSV_PATH = '/home/idhuang/bhs2026/project_sophia/data/ds007353/derivatives/detailed_events/sub-01_events.tsv'
+
 
 print("Initializing BIDS path...")
 
 MODALITY = 'eeg'
+RUN = '04'
 
 #  Define exactly what we want to load
 if MODALITY == 'meg':
@@ -42,8 +47,6 @@ raw = read_raw_bids(bids_path=bids_path, verbose=False)
 #  Print the metadata and plot the sensors
 print("\n--- Data Successfully Loaded ---")
 print(raw.info)
-
-# Pick a few channels to print so we don't flood the terminal
 print("\nFirst 10 Channel Names:")
 print(raw.ch_names[:10])
 
@@ -58,7 +61,7 @@ channel_types = raw.get_channel_types()
 if 'eeg' in channel_types:
     print(" EEG channels detected in the dataset. Applying Common Average Reference (CAR)...")
     #  this function should(?) ONLY alters EEG channels. 
-    raw.set_eeg_reference('average', projection=False)
+    raw.set_eeg_reference('average', projection=True) #need to be projector for inverse math
 else:
     print(" Pure MEG dataset detected. Skipping EEG re-referencing.")
 
@@ -101,9 +104,28 @@ if MODALITY == 'eeg':
     print(f"Applying ICA. Removing components: {ica.exclude}")
     ica.apply(raw) #somehow doesn't work here? assume becuase python save timing?
 
-
 print("\n--- Starting Epoching ---")
 events, event_id = mne.events_from_annotations(raw)
+video_trigger_int = event_id['video on']
+video_events = events[events[:, 2] == video_trigger_int]
+
+# 3. Load and tightly filter the DataFrame
+print("Loading and filtering TSV metadata...")
+events_df = pd.read_csv(TSV_PATH, sep='\t')
+
+# The triple-filter: 'video_on' AND 'eeg' AND run '4'
+metadata_df = events_df[
+    (events_df['event_name'] == 'video_on') & 
+    (events_df['session'] == MODALITY) &
+    (events_df['run'].astype(int) == int(RUN)) # Forces '04' and 4 to match
+].reset_index(drop=True)
+
+print(f"MNE found {len(video_events)} video triggers in Run {RUN}.")
+print(f"Pandas found {len(metadata_df)} matching rows in the TSV.")
+
+if len(video_events) != len(metadata_df):
+    raise ValueError("CRITICAL ALIGNMENT ERROR: The number of MEEG triggers does not match the TSV file for this run!")
+
 tmin = -0.2  # Start 0.2 seconds before the stimulus
 tmax = 2.0   # End 2.0 seconds after the stimulus
 # ^ a little narrow for universal use tho
@@ -111,11 +133,12 @@ tmax = 2.0   # End 2.0 seconds after the stimulus
 print(f"Slicing data from {tmin}s to {tmax}s around each event...")
 epochs = mne.Epochs(
     raw, 
-    events=events, 
-    event_id=event_id['video on'],  #isolates one stimulus for example
+    events=video_events,                       # <-- FIX 1: Use the filtered array (90 rows)
+    event_id={'video on': video_trigger_int},  #isolates one stimulus for example
     tmin=tmin, 
     tmax=tmax, 
     baseline=(None, 0), # Correct the baseline using the 200ms before the video
+    metadata=metadata_df,
     preload=True,       # Load all slices into memory
     verbose=False
 )
