@@ -2,10 +2,10 @@ S.O.P.H.I.A.---Spatiotemporal-Optimization-Package-for-Heterogeneous-Imaging-Ali
 ---
 **Author**: Isaac Dean Huang
 
-### Overview
---
-### Datasets 
---
+ Overview
+---
+ Datasets 
+---
 A large-scale fMRI dataset for human action recognition  
 https://openneuro.org/datasets/ds004488/versions/2.0.1  
 
