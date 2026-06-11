@@ -15,3 +15,7 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 
   Respository Structure
  ---
+
+ Reference
+---
+Esteban, O., Markiewicz, C.J., Blair, R.W. et al. fMRIPrep: a robust preprocessing pipeline for functional MRI. Nat Methods 16, 111–116 (2019). https://doi.org/10.1038/s41592-018-0235-4
