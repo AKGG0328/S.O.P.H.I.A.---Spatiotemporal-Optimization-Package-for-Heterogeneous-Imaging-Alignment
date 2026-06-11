@@ -8,11 +8,13 @@ Roadmap
 	- [ ] def transitioning
 - [ ] fMRI spatial prototyping
 	- [ ] def transitioning
-	- [ ] intergrate for **fmriprep preproceesed data** reading
+	- [x] intergrate for **fmriprep preproceesed data** reading
 - [ ] Source Localiztion
+	- [ ] fake head 
 	- [ ]
 - [ ] SVM
-	- [ ]
+	- [x] Feature extraction: time-frequency domain
+	- [ ] ML process 
 - [ ] RSA
 
 
@@ -47,3 +49,13 @@ Roadmap
 ### 2026/06/07 01:29
 - transioning fmri pipeline to fmriprep standard
 
+### 2026/06/11 13:09
+- add epoch save to 01
+- add more `f` for dual modality 
+- time-freq analysis for meeg data 
+- fmri finalization 
+	- loop for average and 3D map 
+	- write 02b for clean multirun
+- meeg source localization
+	- anatomy 3D model build
+	-- struggling right now :（
