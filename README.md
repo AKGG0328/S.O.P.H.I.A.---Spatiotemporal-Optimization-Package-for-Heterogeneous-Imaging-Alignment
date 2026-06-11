@@ -12,3 +12,6 @@ https://openneuro.org/datasets/ds004488/versions/2.0.1
 
 HAD-MEEG  
 https://openneuro.org/datasets/ds007353/versions/1.0.0
+
+  Respository Structure
+ ---
