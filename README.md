@@ -39,10 +39,10 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 --- 
 ```mermaid
 flowchart TD
- A[MEEG data]--> C[01] --> F[03] --meeg_feature--> G[05]--meeg_rdm-->H[RSA_fusion]
+ A[MEEG data]--> C[load meeg] --epoch--> F[Time Frequency Analysis] --meeg_feature--> G[05]--meeg_rdm-->H[RSA_fusion]
  B[fMRI data]--fMRIPrep--> D[02b]
  B--CIFTIFY--> E[02c]
- E--fmrisurface_rdm-->H[RSA_fusion]
+ E--fmrisurface_rdm-->H[RSA Fusion]
 
 
 
