@@ -9,7 +9,7 @@ resolution of fMRI—which tells us where things happen—and the temporal
 resolution of M/EEG—which tells us when things happen. This pipeline is
 explicitly built to bypass that trade-off.
 
-Existing toolboxes handle volumetric fMRI and standard sensor-space EEG. My package provides the first standardized pipeline for surface-based fMRI-to-MEEG-frequency representational fusion, specifically optimized for action recognition datasets.
+Existing toolboxes handle volumetric fMRI and standard sensor-space EEG. My package provides the first standardized pipeline for surface-based fMRI-to-MEEG-frequency representational fusion.
 
  Datasets 
 ---
