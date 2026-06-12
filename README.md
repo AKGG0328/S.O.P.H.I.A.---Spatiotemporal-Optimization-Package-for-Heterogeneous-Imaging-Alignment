@@ -44,8 +44,6 @@ flowchart LR
  B--CIFTIFY--> E[02c]
  E--fmri surface rdm-->H[RSA Fusion]
 
-
-
 ```
 
 
