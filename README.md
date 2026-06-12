@@ -39,9 +39,9 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 --- 
 ```mermaid
 flowchart TD
- A[MEEG data]
- B[fMRI data] --fMRIPrep--> C[ = ]
- B --CIFTIFY--> C
+ A[MEEG data] --> C[ - ]
+ B[fMRI data] --fMRIPrep--> D - ]
+ B --CIFTIFY--> E
  
 
 
