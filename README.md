@@ -42,7 +42,7 @@ flowchart LR
  A[MEEG data]--> C[load meeg] --epoch--> F[Time Frequency Analysis] --meeg feature--> G[05]--meeg rdm-->H[RSA fusion]
  B[fMRI data]--fMRIPrep--> D[02b]
  B--CIFTIFY--> E[02c]
- E--fmri surface rdm-->H[RSA Fusion]
+ E-..->-..->-..->--fmri surface rdm-->H[RSA Fusion]
 
 
 
