@@ -4,6 +4,14 @@ S.O.P.H.I.A.---Spatiotemporal-Optimization-Package-for-Heterogeneous-Imaging-Ali
 
  Overview
 ---
+As researchers, we are constantly forced to choose between the spatial
+resolution of fMRI—which tells us where things happen—and the temporal
+resolution of M/EEG—which tells us when things happen. This pipeline is
+explicitly built to bypass that trade-off.
+
+The ultimate goal is not just to generate a set of research
+figures, but to deliver a robust, reusable tool.
+
  Datasets 
 ---
 A large-scale fMRI dataset for human action recognition  
@@ -15,6 +23,17 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 
   Respository Structure
  ---
+| Code | Descrpition |
+| `01_load_meeg` ||
+| `02_load_fmri` ||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+
 
  Reference
 ---
