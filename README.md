@@ -35,6 +35,19 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 | `06_rsa_fusion` | - |  
 | `check_overlap` | - |  
 
+ Pipeline
+--- 
+```mermaid
+flowchart TD
+ A[MEEG data]
+ B[fMRI data] --fMRIPrep--> C[ = ]
+ B --CIFTIFY--> C
+ 
+
+
+```
+
+
 
  Reference
 ---
