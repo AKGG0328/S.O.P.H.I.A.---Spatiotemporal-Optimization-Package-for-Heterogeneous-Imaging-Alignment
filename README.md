@@ -47,7 +47,9 @@ flowchart LR
 
  Future Work
 ---
- final rsa math validation with python rsatoolbox 
+ 1.final rsa math validation with python rsatoolbox  
+ 2.packaging  
+ 3.testing    
 
  
 
