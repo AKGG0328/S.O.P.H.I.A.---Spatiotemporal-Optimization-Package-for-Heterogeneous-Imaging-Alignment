@@ -23,16 +23,16 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 
   Respository Structure
  ---
-| Code | Descrpition |
-| `01_load_meeg` ||
-| `02_load_fmri` ||
-|||
-|||
-|||
-|||
-|||
-|||
-|||
+| Code | Descrpition |  
+| `01_load_meeg` ||  
+| `02_load_fmri` ||  
+| `02b_fmri_multirun` ||  
+| `02c_load_fmri_surface` ||  
+| `03_time_frequency` ||  
+| `04_source_localization` ||  
+| `05_machinee_learning` ||  
+| `06_rsa_fusion` ||  
+| `check_overlap` ||  
 
 
  Reference
