@@ -11,8 +11,8 @@ Roadmap
 - [ ] SVM skip for now 
 	- [x] Feature extraction: time-frequency domain
 	- [ ] ML process 
-- [ ] fMRI counterpart matrix
-- [ ] RSA
+- [x] fMRI RDM
+- [x] RSA
 
 
 
@@ -72,3 +72,9 @@ Roadmap
 - meeg rdm @05
 - ml on hold 
 - set for rsa fusion
+
+### 2026/06/12 14:36
+- rsa fusion
+- work on read me 
+- save visualization
+- threshold mod on 02, 02b(comparison testing, no specific meaning)

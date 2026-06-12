@@ -152,7 +152,7 @@ z_map = fmri_glm.compute_contrast('video_on', output_type='z_score')
 print("Plotting the active spatial networks")
 plotting.plot_glass_brain(
     z_map,
-    threshold=4.0,
+    threshold=2.5,
     display_mode='lyrz',
     plot_abs=False,
     cmap='cold_hot'
