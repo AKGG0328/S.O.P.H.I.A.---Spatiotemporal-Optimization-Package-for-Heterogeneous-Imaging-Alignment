@@ -38,7 +38,7 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
  Pipeline
 --- 
 ```mermaid
-flowchart TD
+flowchart LR
  A[MEEG data]--> C[load meeg] --epoch--> F[Time Frequency Analysis] --meeg feature--> G[05]--meeg rdm-->H[RSA fusion]
  B[fMRI data]--fMRIPrep--> D[02b]
  B--CIFTIFY--> E[02c]
