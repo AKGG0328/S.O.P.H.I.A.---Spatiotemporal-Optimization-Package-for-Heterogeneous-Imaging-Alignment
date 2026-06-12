@@ -3,6 +3,10 @@ import nibabel as nib
 import numpy as np
 from nilearn import plotting
 import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.spatial.distance import pdist, squareform
+import re
+
 
 print("Initializing fMRI Surface Loader...")
 
@@ -68,7 +72,7 @@ right_data = map_to_full_surface(trial_1_data, 'CIFTI_STRUCTURE_CORTEX_RIGHT')
 left_sulc  = sulc_array[:32492]
 right_sulc = sulc_array[32492:]
 
-# 5. Plot the Brain
+# Plot the Brain
 print(f"Plotting Activation for: {trial_1_name}")
 fig = plt.figure(figsize=(10, 4))
 
@@ -84,4 +88,93 @@ plotting.plot_surf(
     threshold=15, bg_map=right_sulc, view='lateral', title=f"Right Hemisphere\n{trial_1_name}"
 )
 
+plt.show()
+
+'''
+
+print("\n--- Generating fMRI Surface RDM ---")
+
+# You already loaded fmri_feature_matrix (Shape: 180 x 59412) from the CIFTI file.
+# The M/EEG only has 90 trials. We slice the first 90 rows to perfectly align the datasets chronologically.
+fmri_features_90 = fmri_feature_matrix[:90, :]
+
+print(f"Aligned fMRI Feature Shape: {fmri_features_90.shape} (90 Trials x 59,412 Vertices)")
+
+print("\nCalculating 90x90 fMRI Surface Correlation Matrix...")
+# Calculate the Representational Dissimilarity Matrix across the 59,412 cortical vertices
+spatial_rdm_vector = pdist(fmri_features_90, metric='correlation')
+spatial_rdm_matrix = squareform(spatial_rdm_vector)
+
+# Save the Spatial RDM to disk
+output_rdm_file = '/home/idhuang/bhs2026/project_sophia/data/ds004488/sub-01_fmrisurface_rdm.npy'
+np.save(output_rdm_file, spatial_rdm_matrix)
+print(f" fMRI Surface RDM saved to: {output_rdm_file}")
+
+# Plot the fMRI Spatial RDM
+plt.figure(figsize=(10, 8))
+sns.heatmap(spatial_rdm_matrix, cmap='magma', xticklabels=10, yticklabels=10)
+plt.title("fMRI Single-Trial Spatial RDM (Cortical Vertices)")
+plt.xlabel("Chronological Trial Number (1-90)")
+plt.ylabel("Chronological Trial Number (1-90)")
+plt.show()
+
+'''
+
+print("\n--- Generating ALIGNED fMRI Surface RDM ---")
+meeg_labels = np.load('/home/idhuang/bhs2026/project_sophia/data/ds007353/sub-01_meeg_labels.npy', allow_pickle=True)
+
+# Helper functions for text cleaning
+def normalize(text):
+    return str(text).lower().replace(' ', '').replace('_', '').replace('-', '')
+
+def extract_fmri_name(raw_string):
+    match = re.search(r'^v_(.*?)_id_', raw_string)
+    if match:
+        return match.group(1)
+    return raw_string
+
+# Create a normalized whitelist from the M/EEG labels
+meeg_whitelist = set([normalize(L) for L in meeg_labels])
+
+# Extract and normalize the 180 fMRI names
+# (fmri_labels is already loaded earlier in your script from the .txt file)
+fmri_extracted_names = [extract_fmri_name(L) for L in fmri_labels]
+fmri_normalized_names = np.array([normalize(L) for L in fmri_extracted_names])
+
+# FILTERING: Find the exact indices of the 90 overlapping videos
+# We iterate through the 180 fMRI names and save the index ONLY if it's in the whitelist
+valid_indices = [i for i, name in enumerate(fmri_normalized_names) if name in meeg_whitelist]
+
+print(f"Filtering fMRI data: Dropping extra videos, keeping exactly {len(valid_indices)} overlapping videos...")
+
+# Slice the fMRI features and labels using ONLY the valid indices
+# (fmri_feature_matrix is your 180 x 59412 array loaded from the CIFTI file)
+fmri_features_filtered = fmri_feature_matrix[valid_indices, :]
+fmri_labels_filtered = np.array(fmri_extracted_names)[valid_indices] 
+
+# ALPHABETICAL SORTING (The Mathematical Lock)
+print("Sorting the remaining 90 fMRI trials alphabetically to guarantee M/EEG alignment...")
+sort_indices = np.argsort(fmri_labels_filtered)
+
+fmri_features_sorted = fmri_features_filtered[sort_indices]
+fmri_labels_sorted = fmri_labels_filtered[sort_indices]
+
+# Generate the Representational Dissimilarity Matrix (RDM)
+print(f"Calculating 90x90 fMRI Surface Correlation Matrix... (Matrix Shape: {fmri_features_sorted.shape})")
+spatial_rdm_vector = pdist(fmri_features_sorted, metric='correlation')
+spatial_rdm_matrix = squareform(spatial_rdm_vector)
+
+# Save to disk 
+output_rdm_file = '/home/idhuang/bhs2026/project_sophia/data/ds004488/sub-01_fmrisurface_rdm.npy'
+np.save(output_rdm_file, spatial_rdm_matrix)
+print(f" Aligned & Sorted fMRI Surface RDM saved to: {output_rdm_file}")
+
+# Plot the finalized fMRI grid
+plt.figure(figsize=(12, 10))
+sns.heatmap(spatial_rdm_matrix, cmap='magma', 
+            xticklabels=fmri_labels_sorted, yticklabels=fmri_labels_sorted)
+plt.xticks(fontsize=6)
+plt.yticks(fontsize=6)
+plt.title("fMRI Single-Trial Spatial RDM (Filtered & Alphabetically Aligned)")
+plt.tight_layout()
 plt.show()

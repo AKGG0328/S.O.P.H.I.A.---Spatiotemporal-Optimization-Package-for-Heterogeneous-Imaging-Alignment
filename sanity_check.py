@@ -25,9 +25,7 @@ print("\nReady to begin preprocessing!")
 
 
 # epoch check line
-import mne
-
-# 1. Point to the exact file you just saved
+# Point to the exact file you just saved
 saved_file = '/home/idhuang/bhs2026/project_sophia/data/ds007353/sub-01_task-action-epo.fif'
 
 print(f"Loading saved epochs from: {saved_file}")
@@ -35,7 +33,7 @@ print(f"Loading saved epochs from: {saved_file}")
 # without loading the heavy brainwaves into RAM.
 test_epochs = mne.read_epochs(saved_file, preload=False, verbose=False)
 
-# 2. The Moment of Truth
+# The Moment of Truth
 print("\n--- Inspecting Saved Metadata ---")
 
 if test_epochs.metadata is not None:
@@ -50,3 +48,8 @@ if test_epochs.metadata is not None:
     print(test_epochs.metadata['class_name'].value_counts())
 else:
     print(" WARNING: The metadata is missing. The binding did not save.")
+
+
+import numpy as np
+labels = np.load('/home/idhuang/bhs2026/project_sophia/data/ds007353/sub-01_meeg_labels.npy', allow_pickle=True)
+print(labels[:10])

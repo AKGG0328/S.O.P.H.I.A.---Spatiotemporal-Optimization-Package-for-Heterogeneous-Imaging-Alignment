@@ -67,3 +67,8 @@ Roadmap
 - add epoch label confirm to sanity check
 - mod 03 with label
 
+###  2026/06/12 09:28
+- fmri rdm from 02b
+- meeg rdm @05
+- ml on hold 
+- set for rsa fusion

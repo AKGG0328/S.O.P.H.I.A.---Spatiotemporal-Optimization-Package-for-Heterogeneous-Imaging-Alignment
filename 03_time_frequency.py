@@ -61,5 +61,6 @@ plt.show()
 output_dir = '/home/idhuang/bhs2026/project_sophia/data/ds007353/'
 np.save(f'{output_dir}sub-01_meeg_features.npy', feature_matrix) 
 np.save(f'{output_dir}sub-01_meeg_labels.npy', video_labels)
+print(f"sub-01_meeg_features.npy and sub-01_meeg_labels.npy saved ")
 
 print(f"Final Matrix Shape: {feature_matrix.shape}")
