@@ -30,10 +30,10 @@ https://openneuro.org/datasets/ds007353/versions/1.0.0
 | `02c_load_fmri_surface.py` | Ingests CIFTIFY fMRI surface data to prepare for final RSA fusion. |  
 | `03_time_frequency.py` | Conducts time-frequency domain analysis on evoked M/EEG data to extract signal features.  |  
 | `04_source_localization.py` | Performs M/EEG source localization utilizing the fsaverage anatomy model. |  
-| `05_machinee_learning.py` | Extracts final M/EEG features and generates the M/EEG Representational Dissimilarity Matrix (RDM). |  
+| `05_machine_learning.py` | Extracts final M/EEG features and generates the M/EEG Representational Dissimilarity Matrix (RDM). |  
 | `06_rsa_fusion.py` | Executes Representational Similarity Analysis (RSA) to effectively fuse the M/EEG and fMRI RDMs. |  
 | `check_overlap.py` | Utility script to verify subject and trial overlaps across multimodal datasets. |  
-| `sanoty_check.py` | Initial data validation tool to confirm epoch slicing and event labels. |  
+| `sanity_check.py` | Initial data validation tool to confirm epoch slicing and event labels. |  
 
 
  Pipeline
