@@ -78,8 +78,10 @@ To visualize the representational geometries extracted from both modalities and 
  Future Work
 ---
  1.final rsa math validation with python rsatoolbox  
- 2.packaging  
- 3.testing    
+ 2.larger sample size
+ 3.meeg rdm calculation weighting
+ 4.packaging  
+ 5.testing    
 
  
 
