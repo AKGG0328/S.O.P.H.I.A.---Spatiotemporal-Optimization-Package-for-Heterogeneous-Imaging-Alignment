@@ -78,3 +78,7 @@ Roadmap
 - work on read me 
 - save visualization
 - threshold mod on 02, 02b(comparison testing, no specific meaning)
+
+###2026/08/25 09:42
+- Environment Port 
+- Gameplan 2.0
