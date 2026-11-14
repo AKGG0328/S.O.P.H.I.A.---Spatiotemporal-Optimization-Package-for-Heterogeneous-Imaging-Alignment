@@ -7,3 +7,5 @@ sophia_env/
 .pytest_cache/
 .coverage
 reports/
+old/
+NOTE.md

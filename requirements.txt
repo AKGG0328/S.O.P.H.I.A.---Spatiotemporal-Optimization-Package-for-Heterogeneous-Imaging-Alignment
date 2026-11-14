@@ -1,6 +1,0 @@
-numpy
-scipy
-matplotlib
-seaborn
-nibabel
-nilearn
