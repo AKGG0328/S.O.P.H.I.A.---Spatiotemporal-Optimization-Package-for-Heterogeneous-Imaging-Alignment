@@ -79,6 +79,30 @@ Roadmap
 - save visualization
 - threshold mod on 02, 02b(comparison testing, no specific meaning)
 
-###2026/08/25 09:42
+### 2026/08/25 09:42
 - Environment Port 
 - Gameplan 2.0
+
+### 2026/08/25 13:35
+- complete data reading logic
+- apply save logic/bypass system
+
+### 2026/08/28 07:19
+- ICA
+- event slicing 
+- fmri processing
+
+### 2026/09/21 11:25
+- been some time since last opened
+- logic & roadmap check
+
+### 2026/10/05 15:55
+- gonna try to finish fmri part 
+- work on meeg_processing from epoch .fif => .npy 
+- epoched condition alignment fix 
+- RSA fusion and vizualization
+- next step : 1.tune category 2.wrap up 3.try larger dataset on big drive :)
+
+### 2026/11/14 13:30
+- core patching 
+- public API
